@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <title>Tela inicial</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body id="index">
+  <nav>
+    <a href="./index.html" class="logo_nav"><img src="./assets/img/logo_f1.png"></a>
+    <ul class="ul_navbar">
+      <li><a href="./Historiaf1.html">História da formula 1</a></li>
+      <li><a href="./equipes.html">Equipes</a></li>
+      <li><a id="Quiz_nav" href="./quiz.html">Quiz</a></li>
+      <li><a id="Login_nav" href="./login.html">Login</a></li>
+      <li><a id="Cadastro_nav" href="./cadastro.html">Cadastro</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="banner-tela-inicial">
+      <div class="container-tela-inicial">
+        <div class="caixa-tela-inicial">
+          <h1 class="h1_Titulo">o que é a Formula 1</h1><br>
+          <span class="text_inicio">
+            A Fórmula 1 é a categoria máxima do automobilismo, reconhecida por sua velocidade, tecnologia
+            avançada e
+            competição intensa. Composta por equipes que competem em circuitos ao redor do mundo, os pilotos
+            enfrentam
+            desafios como ultrapassagens, estratégias e condições variáveis. A categoria histórica deu
+            origem a
+            lendas
+            como Senna, Schumacher e Hamilton, impulsionando o desenvolvimento de tecnologias automotivas. A
+            Fórmula
+            1
+            evoluiu para abordar questões ambientais e sustentabilidade, permanecendo uma competição
+            globalmente
+            popular, emocionante e inovadora.
+          </span>
+        </div>
+        <div class="img_max"></div>
+      </div>
+    </div>
+    <br><br>
+    <center>
+      <div class="grafico_inicial">
+        <center>
+          <h2>Tabela com os votos nos pilotos feitos pelos usuários</h2>
+        </center>
+        <canvas id="myChart2" class="grafico_tela_inicial"></canvas>
+      </div>
+    </center>
+
+    <div class="banner-tela-inicial">
+      <div class="container-tela-inicial">
+        <div class="caixa-tela-inicial">
+          <h1 class="h1_Titulo">o que é a Formula 1</h1><br>
+          <span class="text_inicio">
+            A Fórmula 1 é a categoria máxima do automobilismo, reconhecida por sua velocidade, tecnologia
+            avançada e
+            competição intensa. Composta por equipes que competem em circuitos ao redor do mundo, os pilotos
+            enfrentam
+            desafios como ultrapassagens, estratégias e condições variáveis. A categoria histórica deu
+            origem a
+            lendas
+            como Senna, Schumacher e Hamilton, impulsionando o desenvolvimento de tecnologias automotivas. A
+            Fórmula
+            1
+            evoluiu para abordar questões ambientais e sustentabilidade, permanecendo uma competição
+            globalmente
+            popular, emocionante e inovadora.
+          </span>
+        </div>
+        <div class="img_max"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    Copyright 2023 © - Keven Histolino™
+  </footer>
+</body>
+
+</html>
+<script>
+  var lista_equipes = [];
+  var listaPontos = [];
+
+  function obterDadosGrafico() {
+
+    fetch(`/Equipe/Equipes`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          plotarGrafico(resposta)
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+  }
+
+  function plotarGrafico(resposta) {
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+    console.log(resposta)
+
+    // Inserindo valores recebidos em estrutura para plotar o gráfico
+    for (i = 0; i < resposta.length; i++) {
+      var registro = resposta[i];
+      lista_equipes.push(registro.nome);
+      listaPontos.push(registro.Votos);
+    }
+    console.log(lista_equipes);
+    console.log(listaPontos);
+    console.log('iniciando plotagem do gráfico...');
+
+    const tx = document.getElementById('myChart2');
+
+    new Chart(tx, {
+      type: 'bar',
+      data: {
+        axis: 'y',
+        labels: lista_equipes,
+        fontColor: 'white',
+        datasets: [{
+          label: 'Quantidade de votos feitos pela comunidade',
+          data: listaPontos,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 205, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(201, 203, 207, 0.2)'
+          ],
+          borderColor: [
+            'rgb(255, 99, 132)',
+            'rgb(255, 159, 64)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(54, 162, 235)',
+            'rgb(153, 102, 255)',
+            'rgb(201, 203, 207)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        plugins: {
+          legend: {
+            labels: {
+              // This more specific font property overrides the global property
+              font: {
+                size: 20,
+                family: 'Helvetica Neue',
+                style:'initial',
+              }
+            }
+          }
+        }
+      }
+    });
+
+  }
+  obterDadosGrafico();
+
+
+
+  if (sessionStorage.ID_USUARIO == undefined || sessionStorage.ID_USUARIO == null || sessionStorage.ID_USUARIO == "") {
+    Quiz_nav.href = './login.html'
+  }
+  if (sessionStorage.ID_USUARIO != undefined) {
+    Login_nav.innerHTML = '<a href="./dashboard.html">Dashboard</a>';
+    Cadastro_nav.innerHTML = '<button onclick="sair()">Sair</button>'
+
+  }
+  function sair() {
+    sessionStorage.clear()
+    window.location = './index.html'
+  }
+
+// Quiz_nav"
+// Login_nav" 
+// Cadastro_nav
+</script>
