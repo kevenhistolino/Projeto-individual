@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/dashboard.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Estatísticas</title>
+</head>
+
+<body id="dashboard_F1">
+    <nav>
+        <a href="./index.html" class="logo_nav"><img src="./assets/img/logo_f1.png"></a>
+        <ul class="ul_navbar">
+            <li><a href="./Historiaf1.html">História da formula 1</a></li>
+            <li><a href="./equipes.html">Equipes</a></li>
+            <li><a id="Quiz_nav" href="./quiz.html">Quiz</a></li>
+            <li><a id="Login_nav" href="./login.html">Login</a></li>
+            <li><a id="Cadastro_nav" href="./cadastro.html">Cadastro</a></li>
+        </ul>
+    </nav><br><br>`
+    <div class="box_buttons">
+
+        <center>
+            <h1 class="color_titulo">Selecione a equipe</h1>
+        </center><br><br>
+        <div class="buttons_dash">
+            <button onclick="Equipe(Mercedes)" class="button_style"><img src="./assets/img/f1_2021_mercedes_logo.png"
+                    width="85px"></button>
+            <button onclick="Equipe(Ferrari)" class="button_style"><img src="./assets/img/f1_2023_ferrari_logo.png"
+                    width="140px"></button>
+            <button onclick="Equipe(Reed_bull)" class="button_style"><img src="./assets/img/f1_2023_reddBull_logo.png"
+                    width="110px"></button>
+            <button onclick="Equipe(Alfa_romeo)" class="button_style"><img src="./assets/img/alfa-romeo-logo-0.png"
+                    width="100px"></button>
+            <button onclick="Equipe(Willians)" class="button_style"><img src="./assets/img/willians_2023_logo.png"
+                    width="85px"></button>
+            <button onclick="Equipe(Mclaren)" class="button_style"><img src="./assets/img/mclaren_2023_logo.png"
+                    width="85px"></button>
+            <button onclick="Equipe(Alpha_tauri)" class="button_style"><img
+                    src="./assets/img/f1_2023_alpha_tauri_logo.png" width="85px"></button>
+            <button onclick="Equipe(Haas)" class="button_style"><img src="./assets/img/f1_2023_haas_logo.png"
+                    width="180px"></button>
+            <button onclick="Equipe(Aston_martin)" class="button_style"><img
+                    src="./assets/img/f1_aston-martin-cognizant_logo.png" width="150px"></button>
+            <button onclick="Equipe(Alpine)" class="button_style"><img src="./assets/img/Alpine_F1_Team_Logo.svg.png"
+                    width="85px"></button>
+        </div>
+    </div>
+
+    <br><br><br>
+    <div class="BLoco_dos_pilotos">
+        <center>
+            <div class="color_titulo" id="Escuderia"></div>
+        </center><br>
+        <div class="box_stats">
+            <div class="img_piloto" id="img_piloto"><img src=""></div>
+            <div class="container">
+                <div class="Bloco_Status_Piloto">
+
+                    <div class="bloco_pilot">
+                        <div class="color_titulo" id="Nome_piloto"></div><br>
+                    </div>
+                    <div class="Bloco2_Status_Piloto">
+                        <div class="color_texto" id="Idade_piloto"></div>
+                        <div class="color_texto" id="Pontos_piloto"></div>
+                        <div class="color_texto" id="Inicio_piloto"></div>
+                        <div class="color_texto" id="Podiuns_piloto"></div>
+                        <div class="color_texto" id="Vitorias_piloto"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="img_piloto" id="img_piloto2"><img src=""></div>
+            <div class="container">
+                <div class="Bloco_Status_Piloto">
+
+                    <div class="bloco_pilot">
+                        <div class="color_titulo" id="Nome_piloto2"></div><br>
+                    </div>
+                    <div class="Bloco2_Status_Piloto">
+                        <div class="color_texto" id="Idade_piloto2"></div>
+                        <div class="color_texto" id="Pontos_piloto2"></div>
+                        <div class="color_texto" id="Inicio_piloto2"></div>
+                        <div class="color_texto" id="Podiuns_piloto2"></div>
+                        <div class="color_texto" id="Vitorias_piloto2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><br><br><br>
+    <div class="Graficos_card">
+        <div class="Grafico_bloco">
+            <center>
+                <h1 class="color_titulo">Tabela de pontuação do campeonato de pilotos</h1>
+            </center>
+            <div class="dash_pontos_pilotos">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+        <div class="Grafico_bloco">
+            <center>
+                <h1 class="color_titulo">Tabela de pontuação do campeonato de construtores</h1>
+            </center>
+            <div class="dash_pontos_construtores">
+                <canvas id="myChart2" obterDadosGraficoPontos() obterDadosGraficoConstrutores()></canvas>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Copyright 2023 © - Keven Histolino™
+    </footer>
+
+</body>
+
+</html>
+<script>
+    lista_equipes = [Mercedes = {
+        Escuderia: "Mercedes-AMG Petronas Motorsport",
+        Pontuacao_atual_equipe: 96,
+        Piloto1: {
+            img_piloto: `"./assets/img/Lewis_img_mercedes.png"`,
+            Nome: "Lewis Hamilton",
+            idade: 38,
+            Pontuacao_atual: 56,
+            Inicio_f1: 2007,
+            Podiuns: 192,
+            Vitorias: 103,
+        },
+        Piloto2: {
+            img_piloto2: `"./assets/img/Russel_img_mercedes.png"`,
+            Nome: "George William Russell",
+            idade: 25,
+            Pontuacao_atual: 40,
+            Inicio_f1: 2019,
+            Podiuns: 9,
+            Vitorias: 1,
+        }
+    }, Ferrari = {
+        Escuderia: "Scuderia Ferrari",
+        Pontuacao_atual_equipe: 78,
+        Piloto1: {
+            img_piloto: `"./assets/img/Leclerc_img_ferrari.png"`,
+            Nome: "Charles Marc Hervé Perceval Leclerc",
+            idade: 25,
+            Pontuacao_atual: 34,
+            Inicio_f1: 2018,
+            Podiuns: 25,
+            Vitorias: 5,
+        },
+        Piloto2: {
+            img_piloto2: `"./assets/img/Sainz_img_ferrari.png"`,
+            Nome: "Carlos Saínz Vázquez de Castro",
+            idade: 28,
+            Pontuacao_atual: 44,
+            Inicio_f1: 2015,
+            Podiuns: 15,
+            Vitorias: 1,
+
+        }
+    }, Reed_bull = {
+        Escuderia: "Red Bull Racing",
+        Pontuacao_atual_equipe: 224,
+        Piloto1: {
+            img_piloto: `"./assets/img/Max_img_reed.png"`,
+            Nome: "Max Emilian Verstappen",
+            idade: 25,
+            Pontuacao_atual: 119,
+            Inicio_f1: 2015,
+            Podiuns: 82,
+            Vitorias: 38,
+        },
+        Piloto2: {
+            img_piloto2: `"./assets/img/Perez_img_reed.png"`,
+            Nome: "Sergio Michel Pérez Mendoza",
+            idade: 33,
+            Pontuacao_atual: 105,
+            Inicio_f1: 2011,
+            Podiuns: 30,
+            Vitorias: 6,
+
+        }
+    }, Alfa_romeo = {
+        Escuderia: "Sauber F1 Team",
+        Pontuacao_atual_equipe: 6,
+        Piloto1: {
+            img_piloto: `"./assets/img/Bottas_img_romeo.png"`,
+            Nome: "Valtteri Viktor Bottas",
+            idade: 33,
+            Pontuacao_atual: 4,
+            Inicio_f1: 2013,
+            Podiuns: 167,
+            Vitorias: 10,
+        },
+        Piloto2: {
+            img_piloto2: `"./assets/img/zhou_img_romeo.png"`,
+            Nome: "Guanyu zhou",
+            idade: 23,
+            Pontuacao_atual: 2,
+            Inicio_f1: 2022,
+            Podiuns: 0,
+            Vitorias: 0,
+
+        }
+    }, Willians = {
+        Escuderia: "Williams Racing",
+        Pontuacao_atual_equipe: 1,
+        Piloto1: {
+            img_piloto: `"./assets/img/Albon_img_willians.png"`,
+            Nome: "Alexander Albon Ansusinha",
+            idade: 27,
+            Pontuacao_atual: 1,
+            Inicio_f1: 2019,
+            Podiuns: 2,
+            Vitorias: 0,
+        },
+        Piloto2: {
+            img_piloto2: `"./assets/img/Logan_img_willians.png"`,
+            Nome: "Logan Hunter Sargeant",
+            idade: 22,
+            Pontuacao_atual: 0,
+            Inicio_f1: 2023,
+            Podiuns: 0,
+            Vitorias: 0,
+
+        }
+    }, Mclaren = {
+        Escuderia: "McLaren",
+        Pontuacao_atual_equipe: 14,
+        Piloto1: {
+            img_piloto: `"./assets/img/Norris_img_mclaren.png"`,
+            Nome: "Lando norris",
+            idade: 23,
+            Pontuacao_atual: 100,
+            Inicio_f1: 2019,
+            Podiuns: 6,
+            Vitorias: 0,
+        },
+        Piloto2: {
+            img_piloto2: `"./assets/img/Piastri_img_mclaren.png"`,
+            Nome: "Oscar piastri",
+            idade: 22,
+            Pontuacao_atual: 4,
+            Inicio_f1: 2023,
+            Podiuns: 0,
+            Vitorias: 0,
+        }
+    }, Alpha_tauri = {
+        Escuderia: "Scuderia AlphaTauri",
+        Pontuacao_atual_equipe: 2,
+        Piloto1: {
+            img_piloto: `"./assets/img/Yuki_img_tauri.png"`,
+            Nome: "Yuki tsunoda",
+            idade: 23,
+            Pontuacao_atual: 2,
+            Inicio_f1: 2021,
+            Podiuns: 0,
+            Vitorias: 0,
+        },
+        Piloto2: {
+            img_piloto2: "./assets/img/Vries_img_tauri.png",
+            Nome: "Hendrik Johannes Nicasius de Vries",
+            idade: 28,
+            Pontuacao_atual: 0,
+            Inicio_f1: 2023,
+            Podiuns: 0,
+            Vitorias: 0,
+
+        }
+    }, Haas = {
+        Escuderia: "Haas F1 Team",
+        Pontuacao_atual_equipe: 8,
+        Piloto1: {
+            img_piloto: `"./assets/img/Nico_img_haas.png"`,
+            Nome: "Nicolas Hülkenberg",
+            idade: 35,
+            Pontuacao_atual: 6,
+            Inicio_f1: 2010,
+            Podiuns: 0,
+            Vitorias: 0,
+        },
+        Piloto2: {
+            img_piloto2: `"./assets/img/Kevin_img_haas.png"`,
+            Nome: "Kevin Jan Magnussen",
+            idade: 30,
+            Pontuacao_atual: 2,
+            Inicio_f1: 2014,
+            Podiuns: 1,
+            Vitorias: 0,
+
+        }
+    }, Aston_martin = {
+        Escuderia: "Aston Martin Aramco Cognizant Formula One Team",
+        Pontuacao_atual_equipe: 102,
+        Piloto1: {
+            img_piloto: `"./assets/img/Alonso_img_aston.png"`,
+            Nome: "Fernando Alonso Díaz",
+            idade: 41,
+            Pontuacao_atual: 75,
+            Inicio_f1: 2001,
+            Podiuns: 102,
+            Vitorias: 32,
+        },
+        Piloto2: {
+            img_piloto2: `"./assets/img/Stroll_img_aston.png"`,
+            Nome: "Lance Strulovitch",
+            idade: 24,
+            Pontuacao_atual: 27,
+            Inicio_f1: 2017,
+            Podiuns: 3,
+            Vitorias: 0,
+
+        }
+    }, Alpine = {
+        Escuderia: "Alpine F1 Team",
+        Pontuacao_atual_equipe: 14,
+        Piloto1: {
+            img_piloto: `"./assets/img/Gasly_img_alpine.png"`,
+            Nome: "Pierre Jean-Jacques Gasly",
+            idade: 27,
+            Pontuacao_atual: 8,
+            Inicio_f1: 2017,
+            Podiuns: 3,
+            Vitorias: 1,
+        },
+        Piloto2: {
+            img_piloto2: `"./assets/img/Ocon_img_alpine.png"`,
+            Nome: "Esteban José Jean-Pierre Ocon-Khelfane",
+            idade: 26,
+            Pontuacao_atual: 4,
+            Inicio_f1: 2019,
+            Podiuns: 2,
+            Vitorias: 1,
+        }
+    }];
+
+
+
+    function Equipe(Escolha) {
+        for (var i = 0; i < lista_equipes.length; i++) {
+            if (lista_equipes[i] == Escolha) {
+                console.log(`=${lista_equipes[i].Piloto2}`)
+                Escuderia.innerHTML = `<h1 class="colorEscuderia">Escuderia: ${lista_equipes[i].Escuderia}<h1>`;
+                img_piloto.innerHTML = `<img src=${lista_equipes[i].Piloto1.img_piloto}>`;
+                Nome_piloto.innerHTML = `Nome: ${lista_equipes[i].Piloto1.Nome}`;
+                Idade_piloto.innerHTML = `Idade: ${lista_equipes[i].Piloto1.idade}`;
+                Pontos_piloto.innerHTML = `Pontos: ${lista_equipes[i].Piloto1.Pontuacao_atual}`;
+                Inicio_piloto.innerHTML = `Inicio na F1: ${lista_equipes[i].Piloto1.Inicio_f1}`;
+                Podiuns_piloto.innerHTML = `Podiuns: ${lista_equipes[i].Piloto1.Podiuns}`;
+                Vitorias_piloto.innerHTML = `Vitórias na carreira: ${lista_equipes[i].Piloto1.Vitorias}`;
+
+                img_piloto2.innerHTML = `<img src=${lista_equipes[i].Piloto2.img_piloto2}>`;
+                Nome_piloto2.innerHTML = `Nome: ${lista_equipes[i].Piloto2.Nome}`;
+                Idade_piloto2.innerHTML = `Idade: ${lista_equipes[i].Piloto2.idade}`;
+                Pontos_piloto2.innerHTML = `Pontos: ${lista_equipes[i].Piloto2.Pontuacao_atual}`;
+                Inicio_piloto2.innerHTML = `Inicio na F1: ${lista_equipes[i].Piloto2.Inicio_f1}`;
+                Podiuns_piloto2.innerHTML = `Podiuns: ${lista_equipes[i].Piloto2.Podiuns}`;
+                Vitorias_piloto2.innerHTML = `Vitórias na carreira: ${lista_equipes[i].Piloto2.Vitorias}`;
+            }
+        }
+    }
+
+    var listaPiloto = [];
+    var lista_pontosPiloto = [];
+    var lista_Nome_Equipes = [];
+    var lista_pontos_Equipes = [];
+
+    function obterDadosGraficoPontos() {
+
+        fetch(`/Ponto/Pontos`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    plotarGraficoPontos(resposta)
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function plotarGraficoPontos(resposta) {
+
+        console.log('iniciando plotagem do gráfico...');
+
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: listaPiloto,
+                datasets: [{
+                    label: 'Pontos',
+                    data: lista_pontosPiloto,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(201, 203, 207, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 159, 64)',
+                        'rgb(255, 205, 86)',
+                        'rgb(75, 192, 192)',
+                        'rgb(54, 162, 235)',
+                        'rgb(153, 102, 255)',
+                        'rgb(201, 203, 207)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            listaPiloto.push(registro.nome);
+            lista_pontosPiloto.push(registro.pontos);
+        }
+        console.log(listaPiloto);
+        console.log(lista_pontosPiloto);
+    }
+
+
+
+
+
+
+
+    function obterDadosGraficoConstrutores() {
+
+        fetch(`/Ponto/Construtores`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    plotarGraficoConstrutores(resposta)
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function plotarGraficoConstrutores(resposta) {
+
+        console.log('iniciando plotagem do gráfico...');
+
+        const ct = document.getElementById('myChart2');
+
+        new Chart(ct, {
+            type: 'bar',
+            data: {
+                labels: lista_Nome_Equipes,
+                datasets: [{
+                    label: 'Pontos',
+                    data: lista_pontos_Equipes,
+                    backgroundColor: [
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(201, 203, 207, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgb(255, 159, 64)',
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 205, 86)',
+                        'rgb(75, 192, 192)',
+                        'rgb(54, 162, 235)',
+                        'rgb(153, 102, 255)',
+                        'rgb(201, 203, 207)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                plugins: {
+                    legend: {
+                        labels: {
+                            // This more specific font property overrides the global property
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            lista_Nome_Equipes.push(registro.nome);
+            lista_pontos_Equipes.push(registro.Pontos_Construtores);
+        }
+        console.log(lista_Nome_Equipes);
+        console.log(lista_pontos_Equipes);
+    }
+
+    obterDadosGraficoPontos()
+    obterDadosGraficoConstrutores()
+
+    if (sessionStorage.ID_USUARIO == undefined || sessionStorage.ID_USUARIO == null || sessionStorage.ID_USUARIO == "") {
+        Quiz_nav.href = './login.html'
+    }
+    if (sessionStorage.ID_USUARIO != undefined) {
+        Login_nav.innerHTML = '<a href="./dashboard.html">Dashboard</a>';
+        Cadastro_nav.innerHTML = '<button onclick="sair()">Sair</button>'
+
+    }
+    function sair() {
+        sessionStorage.clear()
+        window.location = './index.html'
+    }
+</script>

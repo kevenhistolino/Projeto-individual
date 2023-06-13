@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/Login.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/cadastro.css">
+    <link rel="stylesheet" href="./teste.js">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Cadastro</title>
+</head>
+
+<body id="Cadastro_F1">
+    <nav>
+        <a href="./index.html" class="logo_nav"><img src="./assets/img/logo_f1.png" ></a>
+        <ul class="ul_navbar">  
+              <li><a href="./Historiaf1.html">História da formula 1</a></li>
+              <li><a href="./equipes.html">Equipes</a></li>
+              <li><a id="Quiz_nav" href="./quiz.html">Quiz</a></li>
+              <li><a id="Login_nav" href="./login.html">Login</a></li>
+              <li><a id="Cadastro_nav" href="./cadastro.html">Cadastro</a></li>
+          </ul>
+      </nav>
+    <div class="login-form">
+        <h1>Cadastro</h1>
+        <div class="form-group ">
+            <input type="text" class="form-control" placeholder="Nome" id="nome_cad">
+            <i class="fa fa-user"></i>
+        </div>
+        <div class="form-group log-status">
+            <input type="text" class="form-control" placeholder="Email" id="email_cad">
+            <i class="fa fa-lock"></i>
+        </div>
+        <div class="form-group ">
+            <input type="password" class="form-control" placeholder="Senha" id="senha_cad">
+            <i class="fa fa-user"></i>
+        </div>
+        <div class="form-group ">
+            <input type="password" class="form-control" placeholder="Confirmar senha" id="confirm_senha_cad">
+            <i class="fa fa-user"></i>
+        </div>
+        <center>
+            <h3 class="text_inicio">Selecione a equipe dos seus sonhos</h3> <br>
+            <div class="select">
+            <select name="Votos" id="votos_piloto">
+                <option value="0" selected>Equipes</option>
+                <option value="1">Mercedes</option>
+                <option value="2">Ferrari</option>
+                <option value="3">Reed Bull</option>
+                <option value="4">Alfa Romeo</option>
+                <option value="5">Willians</option>
+                <option value="6">Mclaren</option>
+                <option value="7">Alpha Tauri</option>
+                <option value="8">Haas</option>
+                <option value="9">Aston Martin</option>
+                <option value="10">Alpine</option>
+            </select>
+        </div>
+    </center>
+        <br>
+        <a class="link" href="./login.html">Já possui cadastro? Clique aqui</a>
+        <button class="log-btn" onclick="cadastrar()"><h3>Cadastrar</h3></button>
+    </div>
+
+</body>
+
+</html>
+<script>
+    
+
+    function cadastrar() {
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = nome_cad.value;
+        var emailVar = email_cad.value;
+        var senhaVar = senha_cad.value;
+        var confirmacaoSenhaVar = confirm_senha_cad.value;
+        var select = document.getElementById('votos_piloto');
+        var value_piloto = select.options[select.selectedIndex].value;
+
+
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || value_piloto == 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Há campos em branco',
+                text: 'Preencha todos os campos para prosseguir',
+            })
+            return false;
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+                selectServer: value_piloto
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                Swal.fire({
+                icon: 'success',
+                title: 'Cadastro realizado com sucesso',
+                text: 'Redirecionando para a tela de login'
+                });
+
+                setTimeout(() => {
+                    window.location = "/login.html";
+                }, "2000")
+
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                Swal.fire({
+                icon: 'error',
+                title: 'Houve um erro ao realizar o cadastro'
+                });
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+        return false;
+    }
+
+    if (sessionStorage.ID_USUARIO == undefined || sessionStorage.ID_USUARIO == null || sessionStorage.ID_USUARIO == "" ) {
+        Swal.fire({
+                icon: 'warning',
+                title: 'É preciso realizar o login',
+                text: 'Realize o login para fazer o quiz',
+            })
+        Quiz_nav.href = './login.html'
+    }
+    if (sessionStorage.ID_USUARIO != undefined) {
+      Login_nav.innerHTML = '<a href="./dashboard.html">Dashboard</a>'; 
+      Cadastro_nav.innerHTML = '<button onclick="sair()">Sair</button>'
+
+    }
+    function sair() {
+        sessionStorage.clear()
+        window.location = './index.html'
+    }
+</script>

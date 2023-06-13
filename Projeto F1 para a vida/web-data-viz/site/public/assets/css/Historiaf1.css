@@ -1,0 +1,222 @@
+#Historia_F1 {
+    background: url(../img/img_tela_historia_F1.webp)center center no-repeat fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow-x: hidden;
+}
+.text_Historia {
+    font-size: 17px;
+    color: white;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+}
+.banner1{
+    margin:2% ;
+}
+.container1{
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    border-radius: 50px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background: transparent;
+    backdrop-filter: blur(12px);
+}
+
+.caixaVII h1 {
+    color: rgb(211, 98, 98);
+}
+
+.caixaV {
+    color: black;
+    padding: 20px 20px;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    backdrop-filter: blur(12px);
+    border: 1px  solid white;
+    margin: 2%; 
+    width: 130%;
+}
+.caixaV h1{
+    color: rgb(211, 98, 98);
+}
+
+.caixaVI {
+    color: black;
+    padding: 20px 20px;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    backdrop-filter: blur(12px);
+    border: 1px  solid white;
+    margin: 2%;
+    width: 130%;
+}
+
+.caixaVI h1{
+    color: rgb(211, 98, 98);
+}
+
+.caixaVII {
+    color: black;
+    padding: 20px 20px;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    backdrop-filter: blur(12px);
+    border: 1px  solid white;
+    margin: 2%;
+    width: 130%;
+}
+
+.caixaVIII {
+    color: black;
+    padding: 20px 20px;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    backdrop-filter: blur(12px);
+    border: 1px  solid white;
+    margin: 2%;
+    width: 130%;
+}
+.caixaVIII h1{
+    color: rgb(211, 98, 98);
+}
+.caixaVA h1 {
+    color: rgb(211, 98, 98);
+    margin-bottom: 10px;
+}
+
+.img_dec40{
+    padding: 20px 20px;
+    border-radius: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 400px;
+    margin-right: 45px;
+    background-image: url(../img/2016-05-25-mclaren-estreia-1966.webp);
+    width: 100%;
+    height: 350px;
+    margin: 50px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-size: cover;
+    background-position: center;
+}
+.img_dec50{
+
+    padding: 20px 20px;
+    border-radius: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 400px;
+    margin-right: 45px;
+    background-image: url(../img/A\ época\ dourada\ da\ F1\ nos\ anos\ 60.jpg);
+    width: 100%;
+    height: 350px;
+    margin: 50px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-size: cover;
+    background-position: center;
+}
+.img_dec70{
+
+
+    padding: 20px 20px;
+    border-radius: 60px;;
+    margin-left: 400px;
+    margin-right: 45px;
+    background-size: cover;
+    background-image: url(../img/Carro\ ayrton\ senna.jpeg);
+    width: 100%;
+    height: 350px;
+    margin: 50px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-size: cover;
+    background-position: center;
+}
+
+.img_dec2000{
+
+
+    padding: 20px 20px;
+    border-radius: 60px;;
+    margin-left: 400px;
+    margin-right: 45px;
+    background-size: cover;
+    background-image: url(../img/Carro\ Felipe\ massa16-1\ Willians.jpg);
+    width: 100%;
+    height: 350px;
+    margin: 50px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-size: cover;
+    background-position: center;
+}
+
+.banner2{
+    margin:2% ;
+}  
+
+.container2{
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    border-radius: 50px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background: transparent;
+    backdrop-filter: blur(12px);
+}
+
+.banner3{
+    
+   margin:2% ;  
+   margin-bottom: 3%;
+}  
+.container3{
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    border-radius: 50px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background: transparent;
+    backdrop-filter: blur(12px);
+}
+
+.banner4{
+    
+    margin:2% ;  
+    margin-bottom: 3%;
+ }  
+ .container4{
+     background-color: white;
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+     text-align: center;
+     width: 100%;
+     border-radius: 50px;
+     background: transparent;
+     backdrop-filter: blur(12px);
+ }

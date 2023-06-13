@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/Login.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/js/login.js">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Login</title>
+</head>
+
+<body id="login">
+    <nav>
+        <a href="./index.html" class="logo_nav"><img src="./assets/img/logo_f1.png" ></a>
+        <ul class="ul_navbar">  
+              <li><a href="./Historiaf1.html">História da formula 1</a></li>
+              <li><a href="./equipes.html">Equipes</a></li>
+              <li><a id="Quiz_nav" href="./quiz.html">Quiz</a></li>
+              <li><a id="Login_nav" href="./login.html">Login</a></li>
+              <li><a id="Cadastro_nav" href="./cadastro.html">Cadastro</a></li>
+          </ul>
+      </nav>
+    <div class="login-form">
+        <h1>Login</h1>
+        <div class="form-group ">
+            <input type="text" class="form-control" placeholder="email " id="email_login">
+            <i class="fa fa-user"></i>
+        </div>
+        <div class="form-group log-status">
+            <input type="password" class="form-control" placeholder="senha" id="senha_login">
+            <i class="fa fa-lock"></i>
+        </div>
+        <span class="alert">Email ou senha inválidos</span>
+        <a class="link" href="./cadastro.html">Não possui cadastro? Clique aqui</a>
+        <button class="log-btn" onclick="Entrar()">
+            <h3>Entrar</h3>
+        </button>
+    </div>
+
+</body>
+
+</html>
+<script>
+    function Entrar() {
+
+
+        var emailVar = email_login.value;
+        var senhaVar = senha_login.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Há campos em branco',
+                text: 'Preencha todos os campos para prosseguir',
+            })
+            return false;
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    console.log("vou entrar ");
+                    setTimeout(function () {
+                        console.log("entrei");
+                        window.location = "/dashboard.html";
+                    }, 1000); // apenas para exibir o loading
+                    console.log("consegui entrar");
+                });
+
+            } else {
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Email ou senha inválidos',
+                });
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+        return false;
+    }
+
+    if (sessionStorage.ID_USUARIO == undefined || sessionStorage.ID_USUARIO == null || sessionStorage.ID_USUARIO == "" ) {
+        Swal.fire({
+                icon: 'warning',
+                title: 'É preciso realizar o login',
+                text: 'Realize o login para fazer o quiz',
+            })
+        Quiz_nav.href = './login.html'
+    }
+    if (sessionStorage.ID_USUARIO != undefined) {
+      Login_nav.innerHTML = '<a href="./dashboard.html">Dashboard</a>'; 
+      Cadastro_nav.innerHTML = '<button onclick="sair()">Sair</button>'
+
+    }
+    function sair() {
+        sessionStorage.clear()
+        window.location = './index.html'
+    }
+</script>
