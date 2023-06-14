@@ -44,7 +44,7 @@ SELECT Equipe.nome,COUNT(*) AS Votos
 FROM Cadastro join Equipe on Voto_equipe = id_equipe
 GROUP BY Voto_equipe;
 
-insert into cadastro values
+insert into Cadastro values
 (null,'luis','luis@gmail.com','1234','1'),
 (null,'Helena','Helena@gmail.com','1234','2'),
 (null,'Mariana','Mariana@gmail.com','1234','3'),

@@ -7,7 +7,7 @@
 }
 #dashboard_F1 {
     overflow-x: hidden;
-    background: url(../img/img_tela_dash.jpg) center center no-repeat fixed;
+    background: url(../img/img_tela_dash.jpg.jpg) center center no-repeat fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -28,8 +28,11 @@
     font-family: 'Vibur', cursive;
   }
   .color_titulo {
-    color: white;
+    color: rgba(255, 0, 0, 0.932);
     font-size: 20px;
+  }
+  .color_h2{
+    color: rgb(255, 0, 0);
   }
   .color_texto {
     color: white;
@@ -126,7 +129,8 @@
 .Bloco2_Status_Piloto {
     display: flex;
     justify-content: space-between;
-    width: 115%;
+    width: 90%;
+    margin: auto;
 }
 
 .Graficos_card_pilotos {
