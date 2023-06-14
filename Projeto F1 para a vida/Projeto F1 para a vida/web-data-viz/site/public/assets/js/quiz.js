@@ -237,6 +237,18 @@ function fimDoJogo() {
 
     console.log(pontos);
     var idUsuario = sessionStorage.ID_USUARIO
+    fetch("/grafico/quiz", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            pontosServer: pontos,
+            idServer: idUsuario
+        })
+    })
 
     a.textContent = ""
     b.textContent = ""
@@ -256,5 +268,4 @@ function fimDoJogo() {
          window.location = "./dashboard.html";
      }, 2000)
 
-    
 }

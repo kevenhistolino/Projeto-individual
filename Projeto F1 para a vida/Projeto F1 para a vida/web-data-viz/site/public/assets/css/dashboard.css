@@ -148,7 +148,7 @@
     width: 45vw;
     height: 25vw;
     border-radius: 50px;
-    background: rgba(255, 255, 255, 0.829);
+    background: transparent;
     backdrop-filter: blur(90px);
     box-shadow: rgb(124 0 0) 0px 5px 15px;
 }

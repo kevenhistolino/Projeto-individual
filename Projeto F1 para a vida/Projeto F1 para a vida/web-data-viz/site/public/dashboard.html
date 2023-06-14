@@ -375,7 +375,7 @@
         console.log('iniciando plotagem do gráfico...');
 
         const ctx = document.getElementById('myChart');
-
+        
         new Chart(ctx, {
             type: 'bar',
             data: {
@@ -405,6 +405,14 @@
                 }]
             },
             options: {
+                scales: {
+          x: {
+            ticks:'#fff'
+          },
+          y: {
+            ticks:'#fff'
+          },
+        },
                 scales: {
                     y: {
                         beginAtZero: true
@@ -451,7 +459,7 @@
         console.log('iniciando plotagem do gráfico...');
 
         const ct = document.getElementById('myChart2');
-
+        
         new Chart(ct, {
             type: 'bar',
             data: {
@@ -481,6 +489,14 @@
                 }]
             },
             options: {
+                scales: {
+          x: {
+            ticks:'#fff'
+          },
+          y: {
+            ticks:'#fff'
+          },
+        },
                 indexAxis: 'y',
                 plugins: {
                     legend: {
