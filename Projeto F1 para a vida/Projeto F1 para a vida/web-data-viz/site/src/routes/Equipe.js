@@ -7,5 +7,10 @@ router.get("/Equipes", function (req, res) {
     EquipeController.Equipes(req, res);
 });
 
+router.post("/quiz", function (req, res) {
+    EquipeController.PostarPonto(req, res)
+})
+
+
 
 module.exports = router;

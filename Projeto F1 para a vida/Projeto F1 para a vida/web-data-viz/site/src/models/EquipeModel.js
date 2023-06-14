@@ -10,6 +10,15 @@ function Equipes() {
     return database.executar(instrucao);
 }
 
+function PostarPonto(user, ponto) {
+
+    instrucaoSql = `INSERT INTO quiz VALUES (NULL, ${ponto}, ${user}); `
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
-Equipes
+Equipes,
+PostarPonto
 };

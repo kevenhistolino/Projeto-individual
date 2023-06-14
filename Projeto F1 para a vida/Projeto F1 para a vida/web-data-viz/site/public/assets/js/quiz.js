@@ -237,7 +237,7 @@ function fimDoJogo() {
 
     console.log(pontos);
     var idUsuario = sessionStorage.ID_USUARIO
-    fetch("/grafico/quiz", {
+    fetch("/Equipe/quiz", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
