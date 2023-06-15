@@ -23,7 +23,6 @@
         </ul>
     </nav><br><br>`
     <div class="box_buttons">
-
         <center>
             <h1 class="color_titulo">Selecione a equipe</h1>
         </center><br><br>
@@ -75,7 +74,6 @@
             <div class="img_piloto" id="img_piloto2"><img src=""></div>
             <div class="container">
                 <div class="Bloco_Status_Piloto">
-
                     <div class="bloco_pilot">
                         <div class="color_titulo" id="Nome_piloto2"></div><br>
                     </div>
@@ -92,7 +90,7 @@
     <div class="Graficos_card">
         <div class="Grafico_bloco">
             <center>
-                <h2>Tabela de pontuação do campeonato de pilotos</h2>
+                <h2 class="color_h2">Tabela de pontuação do campeonato de pilotos</h2>
             </center>
             <div class="dash_pontos_pilotos">
                 <canvas id="myChart"></canvas>
@@ -100,20 +98,29 @@
         </div>
         <div class="Grafico_bloco">
             <center>
-                <h2>Tabela de pontuação do campeonato de construtores</h2>
+                <h2 class="color_h2">Tabela de pontuação do campeonato de construtores</h2>
             </center>
             <div class="dash_pontos_construtores">
                 <canvas id="myChart2" obterDadosGraficoPontos() obterDadosGraficoConstrutores()></canvas>
             </div>
         </div>
     </div>
-
+<center>
+    <div class="resultQuiz">
+        <div class="titleQuiz">
+            <b>Rank do Quiz</b>
+        </div>
+        <div class="valoresQuiz">
+            <div class="card2">
+                <div id="div_jogadores"></div>
+            </div>
+        </div>
+    </div>
+</center>
     <footer>
         Copyright 2023 © - Keven Histolino™
     </footer>
-
 </body>
-
 </html>
 <script>
     lista_equipes = [Mercedes = {
@@ -363,32 +370,32 @@
         }
         
         function plotarGraficoPontos(resposta) {
-        // Inserindo valores recebidos em estrutura para plotar o gráfico
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            listaPiloto.push(registro.nome);
-            lista_pontosPiloto.push(registro.pontos);
-        }
-        console.log(listaPiloto);
-        console.log(lista_pontosPiloto);
-
-        console.log('iniciando plotagem do gráfico...');
-
-        const ctx = document.getElementById('myChart');
-        
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: listaPiloto,
-                datasets: [{
-                    label: 'Pontos',
-                    data: lista_pontosPiloto,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(255, 205, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
+            
+            for (i = 0; i < resposta.length; i++) {
+                var registro = resposta[i];
+                listaPiloto.push(registro.nome);
+                lista_pontosPiloto.push(registro.pontos);
+            }
+            console.log(listaPiloto);
+            console.log(lista_pontosPiloto);
+            
+            console.log('iniciando plotagem do gráfico...');
+            
+            const ctx = document.getElementById('myChart');
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: listaPiloto,
+                    datasets: [{
+                        label: 'Pontos',
+                        data: lista_pontosPiloto,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
                         'rgba(153, 102, 255, 0.2)',
                         'rgba(201, 203, 207, 0.2)'
                     ],
@@ -408,28 +415,20 @@
                 scales: {
           x: {
             ticks:'#fff'
-          },
-          y: {
-            ticks:'#fff'
-          },
         },
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
+        y: {
+            ticks:'#fff'
+        },
+        },
+        scales: {
+            y: {
+                beginAtZero: true
             }
-        });
+        }
     }
-
-
-
-
-
-
-
-    function obterDadosGraficoConstrutores() {
-
+});
+}
+function obterDadosGraficoConstrutores() {
         fetch(`/Ponto/Construtores`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
@@ -444,22 +443,13 @@
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
     }
-
-    // Inserindo valores recebidos em estrutura para plotar o gráfico
-    
     function plotarGraficoConstrutores(resposta) {
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
             lista_Nome_Equipes.push(registro.nome);
             lista_pontos_Equipes.push(registro.Pontos_Construtores);
         }
-        console.log(lista_Nome_Equipes);
-        console.log(lista_pontos_Equipes);
-
-        console.log('iniciando plotagem do gráfico...');
-
         const ct = document.getElementById('myChart2');
-        
         new Chart(ct, {
             type: 'bar',
             data: {
@@ -494,20 +484,47 @@
         });
 
     }
-
     obterDadosGraficoPontos()
     obterDadosGraficoConstrutores()
-
     if (sessionStorage.ID_USUARIO == undefined || sessionStorage.ID_USUARIO == null || sessionStorage.ID_USUARIO == "") {
         Quiz_nav.href = './login.html'
     }
     if (sessionStorage.ID_USUARIO != undefined) {
         Login_nav.innerHTML = '<a href="./dashboard.html">Dashboard</a>';
         Cadastro_nav.innerHTML = '<button onclick="sair()">Sair</button>'
-
     }
     function sair() {
         sessionStorage.clear()
         window.location = './index.html'
     }
+
+
+
+
+    function MostrarPontos() {
+    fetch(`/Equipe/quizValores`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+    
+            Mostrar(resposta)
+    
+          });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+        }
+      })
+        .catch(function (error) {
+          console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+     }
+     MostrarPontos()
+
+function Mostrar(resposta) {
+    for (i = 0; i < resposta.length; i++) {
+        var jogadorPontos = resposta[i]
+        var jogadorAtual = resposta[i]
+        div_jogadores.innerHTML += `<span style="color: red;">${i+1}</span> - ${jogadorAtual.nome} - <span style="color: red;">${jogadorPontos.pto} Pontos</span><br>`
+    }
+}
 </script>

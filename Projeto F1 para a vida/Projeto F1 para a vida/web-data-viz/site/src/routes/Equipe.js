@@ -11,6 +11,8 @@ router.post("/quiz", function (req, res) {
     EquipeController.PostarPonto(req, res)
 })
 
-
+router.get("/quizValores",  function (req, res) {
+    EquipeController.PegarValores(req, res)
+})
 
 module.exports = router;

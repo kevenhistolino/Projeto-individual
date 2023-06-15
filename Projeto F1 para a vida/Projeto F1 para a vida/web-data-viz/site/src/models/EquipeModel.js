@@ -18,7 +18,16 @@ function PostarPonto(user, ponto) {
     return database.executar(instrucaoSql);
 }
 
+function PegarValores() {
+
+    instrucaoSql = `select nome, sum(pontos) as pto from quiz join Cadastro on fk_cadastro_quiz = idUsuario group by nome order by pto desc limit 10;`
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
 Equipes,
-PostarPonto
+PostarPonto,
+PegarValores
 };

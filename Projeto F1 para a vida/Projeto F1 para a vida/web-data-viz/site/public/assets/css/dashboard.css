@@ -7,7 +7,7 @@
 }
 #dashboard_F1 {
     overflow-x: hidden;
-    background: url(../img/img_tela_dash.jpg) center center no-repeat fixed;
+    background: url(../img/img_tela_dash.jpg.jpg) center center no-repeat fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -21,6 +21,56 @@
     backdrop-filter: blur(90px);
     background-color: transparent;
   }
+  .resultQuiz {
+width: 800px;
+height: 650px;
+box-shadow: rgb(124 0 0) 0px 5px 15px;
+backdrop-filter: blur(90px);
+background-color: transparent;
+border-radius: 50px;
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-bottom: 5%;
+}
+.titleQuiz {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 32px;
+  color: #ffff;
+  background: url(../assets/imgs-tela/background-image.png);
+  border-image-source: url(../assets/img-classes/border-image.png);
+  border-image-repeat: repeat;
+  border-image-slice: 15 15 15 15;
+  border-image-width: 13px;
+  border-width: 15px;
+  background-clip: padding-box;
+}
+
+.card2 {
+width: 80%;
+min-height: 85%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: start;
+padding: 5%;
+}
+
+.valoresQuiz {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffff;
+  font-weight: 400;
+  font-size: 40px;
+}
 
   .colorEscuderia{
     color: white;
@@ -28,8 +78,11 @@
     font-family: 'Vibur', cursive;
   }
   .color_titulo {
-    color: white;
+    color: rgba(255, 0, 0, 0.932);
     font-size: 20px;
+  }
+  .color_h2{
+    color: rgb(255, 0, 0);
   }
   .color_texto {
     color: white;
@@ -126,7 +179,8 @@
 .Bloco2_Status_Piloto {
     display: flex;
     justify-content: space-between;
-    width: 115%;
+    width: 90%;
+    margin: auto;
 }
 
 .Graficos_card_pilotos {
@@ -148,7 +202,7 @@
     width: 45vw;
     height: 25vw;
     border-radius: 50px;
-    background: transparent;
+    background: rgb(0, 0, 0);
     backdrop-filter: blur(90px);
     box-shadow: rgb(124 0 0) 0px 5px 15px;
 }
