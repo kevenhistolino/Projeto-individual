@@ -109,11 +109,20 @@
   }
 
   function plotarGrafico(resposta) {
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+    console.log(resposta)
+
+    // Inserindo valores recebidos em estrutura para plotar o gráfico
     for (i = 0; i < resposta.length; i++) {
       var registro = resposta[i];
       lista_equipes.push(registro.nome);
       listaPontos.push(registro.Votos);
     }
+    console.log(lista_equipes);
+    console.log(listaPontos);
+    console.log('iniciando plotagem do gráfico...');
+
     const tx = document.getElementById('myChart2');
 
     new Chart(tx, {
@@ -179,4 +188,8 @@
     sessionStorage.clear()
     window.location = './index.html'
   }
+
+// Quiz_nav"
+// Login_nav" 
+// Cadastro_nav
 </script>
